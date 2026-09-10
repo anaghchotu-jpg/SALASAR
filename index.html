@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SALASAR — Enter Your Universe</title>
+<meta name="description" content="SALASAR — an Indian futuristic game universe of challenges, racing, ranks and discovery.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{--bg:#050712;--panel:rgba(13,18,35,.76);--line:rgba(255,255,255,.12);--gold:#ffd36a;--cyan:#53dfff;--purple:#a970ff;--orange:#ff7a45;--text:#f4f7ff;--muted:#93a0ba;--good:#67f6ae;--danger:#ff657a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% 0,#15102a 0,#050712 42%,#02030a 100%);color:var(--text);font-family:"Space Grotesk",sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 75%);z-index:-1}
+button,input,textarea{font:inherit}.hidden{display:none!important}.muted{color:var(--muted)}.gold{color:var(--gold)}.cyan{color:var(--cyan)}.purple{color:var(--purple)}
+#intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#02030a;overflow:hidden;transition:opacity .9s,visibility .9s}
+#intro.exit{opacity:0;visibility:hidden}.stars,.stars:before,.stars:after{position:absolute;inset:0;content:"";background-image:radial-gradient(circle,#fff 0 1px,transparent 1.5px);background-size:83px 83px;opacity:.35;animation:drift 18s linear infinite}.stars:before{transform:translate(30px,50px) scale(1.4);opacity:.2}.stars:after{transform:translate(-60px,-20px) scale(.7);opacity:.4}
+@keyframes drift{to{transform:translateY(83px)}}
+.intro-card{text-align:center;position:relative;z-index:2}.eyebrow{letter-spacing:.38em;text-transform:uppercase;font-size:12px;color:var(--cyan);margin-bottom:22px}.logo{font-family:Rajdhani;font-size:clamp(72px,15vw,180px);letter-spacing:.12em;line-height:.75;margin:0;background:linear-gradient(120deg,#fff,var(--gold),#fff);-webkit-background-clip:text;color:transparent;text-shadow:0 0 60px rgba(255,211,106,.18)}.tag{font-size:clamp(14px,2vw,20px);letter-spacing:.32em;color:#d7dcef;margin:28px 0 40px}.enter{border:1px solid rgba(255,211,106,.65);color:#0a0a0e;background:linear-gradient(120deg,#fff0b1,var(--gold));padding:17px 30px;border-radius:999px;font-weight:800;cursor:pointer;box-shadow:0 0 45px rgba(255,211,106,.22);transition:.25s}.enter:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 0 70px rgba(255,211,106,.35)}
+nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px 5vw;background:rgba(4,6,15,.72);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.brand{font-family:Rajdhani;font-weight:700;letter-spacing:.18em;color:var(--gold);font-size:25px}.navlinks{display:flex;gap:8px}.navlinks button,.iconbtn{background:transparent;border:1px solid transparent;color:#bfc8dc;padding:9px 12px;border-radius:10px;cursor:pointer}.navlinks button:hover,.iconbtn:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.04)}
+main{max-width:1400px;margin:auto;padding:30px 5vw 100px}.hero{min-height:62vh;display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}.hero h1{font-family:Rajdhani;font-size:clamp(52px,8vw,112px);line-height:.86;margin:0 0 20px}.hero h1 span{color:var(--gold)}.hero p{max-width:650px;color:#aab5cb;font-size:18px;line-height:1.7}.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{border:1px solid var(--line);border-radius:12px;padding:12px 17px;color:#fff;background:rgba(255,255,255,.05);cursor:pointer}.btn.primary{background:linear-gradient(120deg,#ffd86f,#ffad42);color:#111;border:0;font-weight:800}.btn:hover{transform:translateY(-2px)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:35px}.stat{padding:14px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.035)}.stat b{display:block;font-size:22px}.stat small{color:var(--muted)}
+.orb{height:430px;border:1px solid rgba(83,223,255,.22);border-radius:30px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 45%,rgba(83,223,255,.2),transparent 27%),radial-gradient(circle at 70% 30%,rgba(169,112,255,.22),transparent 28%),#070a17;box-shadow:inset 0 0 80px rgba(83,223,255,.06),0 0 70px rgba(83,223,255,.06)}.orb:before{content:"";position:absolute;width:260px;height:260px;border:1px solid rgba(255,211,106,.35);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 0 50px rgba(255,211,106,.15)}.orb:after{content:"SALASAR";position:absolute;inset:0;display:grid;place-items:center;font:700 45px Rajdhani;letter-spacing:.18em;color:#fff;text-shadow:0 0 30px var(--cyan)}
+section{margin-top:80px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:20px}.section-head h2{font:700 38px Rajdhani;margin:0;letter-spacing:.06em}.section-head p{margin:5px 0 0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;backdrop-filter:blur(16px);box-shadow:0 15px 50px rgba(0,0,0,.18)}.card:hover{border-color:rgba(83,223,255,.3);transform:translateY(-3px);transition:.25s}.card h3{margin:0 0 8px;font-family:Rajdhani;font-size:25px}.card p{color:var(--muted);line-height:1.55}.location{min-height:160px;cursor:pointer}.location .symbol{font-size:27px;margin-bottom:12px}.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding:6px 8px;border-radius:999px;border:1px solid var(--line);color:#b9c5dc}
+.ranks{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.rank-card{padding:17px;border-radius:17px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018));min-height:190px}.rank-card h3{font:700 24px Rajdhani;margin:0 0 4px}.rank-card .ranks-list{color:#c2cbe0;font-size:13px;line-height:1.85}.rank-card.hashira{border-color:rgba(255,211,106,.4);box-shadow:0 0 40px rgba(255,211,106,.07)}
+.game-shell{display:grid;grid-template-columns:1fr 1fr;gap:15px}.game{min-height:330px}.question{font-size:22px;font-weight:700;margin:20px 0}.answers{display:grid;gap:10px}.answers button{text-align:left}.timer{height:7px;border-radius:99px;background:#20273a;overflow:hidden}.timer i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width .1s linear}.result{min-height:30px;margin-top:15px;font-weight:700}
+#raceCanvas{width:100%;height:420px;display:block;border-radius:16px;background:#060914;border:1px solid var(--line);touch-action:none}.race-hud{display:flex;justify-content:space-between;gap:8px;margin-bottom:10px}.key{padding:5px 8px;border:1px solid var(--line);border-radius:8px;color:#bdc7dc;font-size:12px}
+.profile{display:grid;grid-template-columns:260px 1fr;gap:20px}.avatar{height:260px;border-radius:24px;background:radial-gradient(circle at 50% 35%,#fff2a7,transparent 16%),radial-gradient(circle at 50% 55%,#7e4cff,transparent 45%),#101528;display:grid;place-items:center;font:700 80px Rajdhani;color:#fff;border:1px solid var(--line)}.progress{height:10px;border-radius:99px;background:#20273a;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold));width:0}
+table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:12px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+.rating{display:grid;grid-template-columns:1fr 1fr;gap:15px}.rating form{display:grid;gap:12px}.field{background:#090d19;border:1px solid var(--line);color:#fff;border-radius:12px;padding:12px;outline:none}.field:focus{border-color:rgba(83,223,255,.55)}textarea.field{min-height:130px;resize:vertical}.stars-rate{display:flex;gap:5px}.stars-rate button{font-size:27px;border:0;background:transparent;color:#465067;cursor:pointer}.stars-rate button.active{color:var(--gold)}
+footer{padding:40px 5vw;border-top:1px solid var(--line);color:var(--muted);text-align:center}
+.toast{position:fixed;right:20px;bottom:20px;z-index:90;background:#10172a;border:1px solid var(--line);padding:13px 16px;border-radius:12px;box-shadow:0 15px 45px #000;transform:translateY(120px);transition:.35s}.toast.show{transform:none}
+.modal{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.7);backdrop-filter:blur(10px);display:grid;place-items:center;padding:20px}.modal .box{max-width:620px;width:100%;max-height:85vh;overflow:auto}
+@media(max-width:900px){.hero,.game-shell,.profile,.rating{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.ranks{grid-template-columns:1fr 1fr}.navlinks{display:none}.stats{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){main{padding:20px 4vw 80px}.hero{min-height:75vh}.grid,.ranks{grid-template-columns:1fr}.orb{height:300px}.stats{grid-template-columns:1fr 1fr}.section-head h2{font-size:30px}#raceCanvas{height:340px}}
+
+.hero{position:relative}
+.hero:before{content:"";position:absolute;inset:-18px -6vw;background:linear-gradient(90deg,rgba(3,5,13,.98) 0%,rgba(3,5,13,.74) 42%,rgba(3,5,13,.22) 100%),url('assets/salasar-hero.png') center/cover;opacity:.52;border-bottom:1px solid rgba(255,211,106,.12);z-index:-1;border-radius:32px}
+.hero-copy{position:relative}
+.temple-note{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(255,211,106,.28);background:rgba(255,184,70,.06);padding:8px 12px;border-radius:999px;color:#f5d98b;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.mobile-controls{display:flex;gap:10px;justify-content:center;margin-top:10px}
+.mobile-controls button{width:90px;height:48px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#fff;font-size:22px;touch-action:none}
+.multiplayer{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.room-code{font:700 27px Rajdhani;letter-spacing:.2em;color:var(--gold);padding:12px 0}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#666;margin-right:7px}.status-dot.live{background:var(--good);box-shadow:0 0 12px var(--good)}
+.location-footer{position:relative;margin-top:35px;padding:35px 5vw;background:linear-gradient(180deg,rgba(8,8,15,.2),rgba(26,11,6,.92));border-top:1px solid rgba(255,211,106,.18)}
+.location-footer:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0,rgba(255,160,50,.12),transparent 55%);pointer-events:none}
+.location-inner{max-width:1400px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.location-title{font:700 28px Rajdhani;letter-spacing:.08em;color:var(--gold)}
+.location-address{color:#d2d6e2;line-height:1.6}.location-actions{display:flex;gap:10px;flex-wrap:wrap}
+@media(max-width:900px){.multiplayer{grid-template-columns:1fr}.location-inner{flex-direction:column;align-items:flex-start}}
+</style>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js">
+/* Multiplayer: PeerJS WebRTC room layer */
+let peer=null, conn=null, isHost=false;
+function mpStatus(text,live=false){document.getElementById("mpStatus").textContent=text;document.getElementById("mpDot").classList.toggle("live",live)}
+function wireConn(c){
+  conn=c;
+  c.on("open",()=>{mpStatus("CONNECTED",true);document.getElementById("mpResult").textContent="Connected! Multiplayer data channel is live."; if(isHost) c.send({type:"hello",player:state.rank,xp:state.xp});});
+  c.on("data",d=>{
+    if(d.type==="hello") document.getElementById("mpResult").textContent="Rival joined: "+d.player+" • "+d.xp+" XP";
+    if(d.type==="race") document.getElementById("mpResult").textContent="Rival racing • score "+d.score;
+    if(d.type==="finish") document.getElementById("mpResult").textContent="Rival finished with "+d.score+" points.";
+  });
+  c.on("close",()=>{mpStatus("DISCONNECTED");document.getElementById("mpResult").textContent="Connection closed."});
+  c.on("error",()=>{mpStatus("ERROR");document.getElementById("mpResult").textContent="Could not keep the room connection open."});
+}
+document.getElementById("createRoom").onclick=()=>{
+  if(typeof Peer==="undefined"){toast("Multiplayer library unavailable");return}
+  if(peer) peer.destroy();
+  peer=new Peer();
+  isHost=true;mpStatus("CREATING…");
+  peer.on("open",id=>{document.getElementById("myRoomCode").textContent=id;mpStatus("WAITING",true);document.getElementById("mpResult").textContent="Room ready. Share the code.";});
+  peer.on("connection",c=>wireConn(c));
+  peer.on("error",e=>{mpStatus("ERROR");toast("Room error: "+e.type)});
+};
+document.getElementById("joinRoom").onclick=()=>{
+  if(typeof Peer==="undefined"){toast("Multiplayer library unavailable");return}
+  const id=document.getElementById("joinCode").value.trim();if(!id)return toast("Enter a room code");
+  if(peer) peer.destroy();peer=new Peer();isHost=false;mpStatus("CONNECTING…");
+  peer.on("open",()=>wireConn(peer.connect(id)));
+  peer.on("error",e=>{mpStatus("ERROR");toast("Join error: "+e.type)});
+};
+document.getElementById("copyRoom").onclick=async()=>{
+  const code=document.getElementById("myRoomCode").textContent;if(code==="—")return toast("Create a room first");
+  try{await navigator.clipboard.writeText(code);toast("Room code copied")}catch{toast("Copy failed — select the code")}
+};
+
+/* Mobile race controls */
+function hold(el,key){const down=e=>{e.preventDefault();race.keys[key]=true},up=e=>{e.preventDefault();race.keys[key]=false};["pointerdown","touchstart"].forEach(x=>el.addEventListener(x,down,{passive:false}));["pointerup","pointercancel","pointerleave","touchend"].forEach(x=>el.addEventListener(x,up,{passive:false}))}
+hold(document.getElementById("leftBtn"),"left");hold(document.getElementById("rightBtn"),"right");
+document.getElementById("brakeBtn").addEventListener("pointerdown",e=>{e.preventDefault();race.speed=Math.max(2,race.speed-2)});
+</script>
+</head>
+<body>
+<div id="intro">
+  <div class="stars"></div>
+  <div class="intro-card">
+    <div class="eyebrow">A DIGITAL UNIVERSE</div>
+    <h1 class="logo">SALASAR</h1>
+    <div class="tag">YOUR JOURNEY STARTS HERE.</div>
+    <button class="enter" id="enterBtn">ENTER SALASAR →</button>
+  </div>
+</div>
+
+<nav>
+  <div class="brand">SALASAR</div>
+  <div class="navlinks">
+    <button data-go="home">Home</button><button data-go="explore">Explore</button><button data-go="play">Play</button><button data-go="events">Events</button><button data-go="multiplayer">Multiplayer</button><button data-go="profile">Profile</button>
+  </div>
+  <button class="iconbtn" id="soundBtn">◉ SOUND</button>
+</nav>
+
+<main id="home">
+<section class="hero">
+  <div class="hero-copy">
+    <div class="temple-note">✦ Inspired by Salasar Balaji • Rajasthan</div>
+    <div class="eyebrow">LEVEL 07 • <span id="heroRank">PATHIK</span></div>
+    <h1>WELCOME TO<br><span>SALASAR</span></h1>
+    <p>A cinematic Indian-futuristic game universe. Explore districts, master real challenges, race for glory, climb the ranks and become <b>AYUTAKSH</b>.</p>
+    <div class="cta-row"><button class="btn primary" data-go="play">PLAY A CHALLENGE</button><button class="btn" data-go="explore">EXPLORE WORLD</button><button class="btn" data-go="multiplayer">PLAY WITH FRIEND</button></div>
+    <div class="stats"><div class="stat"><b id="xp">0</b><small>XP</small></div><div class="stat"><b id="lives">❤❤❤</b><small>LIVES</small></div><div class="stat"><b id="energy">100</b><small>ENERGY</small></div><div class="stat"><b id="streak">0</b><small>STREAK</small></div></div>
+  </div>
+  <div class="orb"></div>
+</section>
+
+<section id="explore">
+ <div class="section-head"><div><h2>THE WORLD MAP</h2><p>Choose your destination.</p></div></div>
+ <div class="grid">
+  <div class="card location" data-place="plaza"><div class="symbol">✦</div><h3>THE PLAZA</h3><p>The central spawn. Daily missions, announcements and quick actions.</p><div class="chips"><span class="chip">Home</span><span class="chip">Daily</span></div></div>
+  <div class="card location" data-place="hub"><div class="symbol">◈</div><h3>THE HUB</h3><p>Community quests, crews and player conversations.</p><div class="chips"><span class="chip">Social</span><span class="chip">Crews</span></div></div>
+  <div class="card location" data-place="vault"><div class="symbol">◇</div><h3>THE VAULT</h3><p>Unlockable lore, collectibles, hidden stories and rare rewards.</p><div class="chips"><span class="chip">Locked</span><span class="chip">Lore</span></div></div>
+  <div class="card location" data-place="arena"><div class="symbol">⚔</div><h3>THE ARENA</h3><p>Real quizzes, puzzles, speed runs and boss challenges.</p><div class="chips"><span class="chip">Play</span><span class="chip">XP</span></div></div>
+  <div class="card location" data-place="stage"><div class="symbol">✹</div><h3>THE STAGE</h3><p>Live events, tournaments and limited-time missions.</p><div class="chips"><span class="chip">Events</span><span class="chip">Live</span></div></div>
+  <div class="card location" data-place="gallery"><div class="symbol">▣</div><h3>THE GALLERY</h3><p>Stories, screenshots, player milestones and memories.</p><div class="chips"><span class="chip">Stories</span><span class="chip">Media</span></div></div>
+ </div>
+</section>
+
+<section id="ranks">
+ <div class="section-head"><div><h2>THE ASCENSION</h2><p>Five categories. Twenty-five ranks. One ultimate title.</p></div></div>
+ <div class="ranks">
+  <div class="rank-card"><h3 class="cyan">YATRA</h3><div class="ranks-list">PATHIK<br>ANVESHAK<br>SANCHARI<br>DIGVIJAY<br>VISHWAJIT</div></div>
+  <div class="rank-card"><h3 class="purple">DIVYA</h3><div class="ranks-list">ARJAK<br>MANTRA<br>SIDDHA<br>RISHI<br>MAHARISHI</div></div>
+  <div class="rank-card"><h3 style="color:var(--orange)">AGNI</h3><div class="ranks-list">JVALA<br>TEJAS<br>AGNEY<br>PRACHAND<br>AGNIVEER</div></div>
+  <div class="rank-card"><h3 class="cyan">VAJRA</h3><div class="ranks-list">YODHA<br>VEER<br>RANVEER<br>MAHAVEER<br>VAJRA VEER</div></div>
+  <div class="rank-card hashira"><h3 class="gold">HASHIRA</h3><div class="ranks-list">ANAGH<br>SAMBHAVI<br>VRISHANK<br>ANJANAY<br><b class="gold">AYUTAKSH</b></div></div>
+ </div>
+</section>
+
+<section id="play">
+ <div class="section-head"><div><h2>THE ARENA</h2><p>Every button is playable. Every result changes your journey.</p></div><div class="chips"><span class="chip">Easy +50</span><span class="chip">Normal +100</span><span class="chip">Hard +200</span></div></div>
+ <div class="game-shell">
+  <div class="card game">
+   <h3>⚡ QUICKFIRE QUIZ</h3><p>Answer before the timer drains. Wrong answers cost a life.</p>
+   <div class="timer"><i id="quizBar"></i></div><div class="question" id="quizQuestion">Loading challenge…</div>
+   <div class="answers" id="answers"></div><div class="result" id="quizResult"></div>
+   <button class="btn" id="nextQuiz">NEXT CHALLENGE</button>
+  </div>
+  <div class="card game">
+   <h3>🧠 PATTERN CORE</h3><p>Read the sequence and choose the missing value.</p>
+   <div class="question" id="patternQ">2 • 4 • 8 • 16 • ?</div><div class="answers" id="patternA"></div><div class="result" id="patternResult"></div>
+  </div>
+ </div>
+</section>
+
+<section id="race">
+ <div class="section-head"><div><h2>VAJRA RUSH — RACING</h2><p>Steer your vehicle, dodge obstacles and survive 60 seconds. Desktop: A/D or ←/→. Mobile: drag.</p></div><div class="chips"><span class="chip">+200 XP</span><span class="chip">BEST SCORE SAVED</span></div></div>
+ <div class="card">
+   <div class="race-hud"><span class="key">SCORE <b id="raceScore">0</b></span><span class="key">SPEED <b id="raceSpeed">1.0x</b></span><span class="key">BEST <b id="raceBest">0</b></span><button class="btn" id="raceStart">START RACE</button></div>
+   <canvas id="raceCanvas" width="900" height="420"></canvas>
+   <div class="mobile-controls"><button id="leftBtn">◀</button><button id="brakeBtn">●</button><button id="rightBtn">▶</button></div>
+   <div class="result" id="raceResult">Reach the finish without crashing.</div>
+ </div>
+</section>
+
+
+<section id="multiplayer">
+ <div class="section-head"><div><h2>MULTIPLAYER REALM</h2><p>Invite a friend. Create or join a peer-to-peer room and race together.</p></div><div class="chips"><span class="chip"><span id="mpDot" class="status-dot"></span><span id="mpStatus">OFFLINE</span></span></div></div>
+ <div class="multiplayer">
+  <div class="card">
+   <h3>CREATE A ROOM</h3><p class="muted">Your browser becomes the room host. Share the room code with a friend.</p>
+   <button class="btn primary" id="createRoom">CREATE MULTIPLAYER ROOM</button>
+   <div class="room-code" id="myRoomCode">—</div>
+   <button class="btn" id="copyRoom">COPY ROOM CODE</button>
+  </div>
+  <div class="card">
+   <h3>JOIN A ROOM</h3><p class="muted">Enter your friend's room code to connect.</p>
+   <input class="field" id="joinCode" placeholder="Paste host room code">
+   <button class="btn primary" id="joinRoom">JOIN ROOM</button>
+   <div class="result" id="mpResult">Waiting for connection.</div>
+  </div>
+ </div>
+ <div class="card" style="margin-top:15px">
+   <h3>LIVE RACE SYNC</h3>
+   <p class="muted">Once connected, the racing arena can exchange player position, score and finish events over the peer connection. The same game remains playable solo when no friend is connected.</p>
+   <div class="chips"><span class="chip">WebRTC P2P</span><span class="chip">Mobile + Desktop</span><span class="chip">Room Code</span><span class="chip">No Account Required for Demo</span></div>
+ </div>
+</section>
+<section id="leaderboard">
+ <div class="section-head"><div><h2>LEADERBOARD</h2><p>Local competitive board — ready to connect to a database later.</p></div></div>
+ <div class="card"><table><thead><tr><th>#</th><th>Player</th><th>Rank</th><th>XP</th></tr></thead><tbody id="board"></tbody></table></div>
+</section>
+
+<section id="events">
+ <div class="section-head"><div><h2>THE STAGE</h2><p>Limited-time events and missions.</p></div></div>
+ <div class="grid"><div class="card"><h3>🔥 AGNI WEEK</h3><p>Win 3 challenges in a row. Reward: +300 XP and an exclusive badge.</p><button class="btn primary" onclick="toast('Agni Week joined!')">JOIN EVENT</button></div><div class="card"><h3>🏁 VAJRA RUSH CUP</h3><p>Set a racing score above 2,500 to enter the weekly cup.</p><button class="btn primary" onclick="scrollToId('race')">RACE NOW</button></div><div class="card"><h3>🌌 VAULT DROP</h3><p>A hidden lore fragment appears when you reach 1,000 XP.</p><button class="btn" onclick="checkVault()">CHECK VAULT</button></div></div>
+</section>
+
+<section id="profile">
+ <div class="section-head"><div><h2>PLAYER PROFILE</h2><p>Your identity inside SALASAR.</p></div></div>
+ <div class="profile">
+  <div class="avatar" id="avatar">A</div>
+  <div class="card"><h3 id="playerName">ANAGH</h3><p class="muted">Explorer • <span id="profileRank">PATHIK</span></p><div class="chips"><span class="chip">Level <b id="level">1</b></span><span class="chip">Games <b id="games">0</b></span><span class="chip">Wins <b id="wins">0</b></span></div><p>Progress to next level</p><div class="progress"><i id="levelBar"></i></div><p class="muted">Achievements: FIRST ENTRY • EXPLORER • CHALLENGER • SPEED DEMON • STREAK MASTER • BOSS SLAYER</p></div>
+ </div>
+</section>
+
+<section id="rate">
+ <div class="section-head"><div><h2>RATE SALASAR ⭐</h2><p>Your feedback helps shape the next world.</p></div></div>
+ <div class="rating">
+  <div class="card"><h3>How was your journey?</h3><p class="muted">Rate the game and tell us what to improve.</p><div class="stars-rate" id="starsRate"><button data-star="1">★</button><button data-star="2">★</button><button data-star="3">★</button><button data-star="4">★</button><button data-star="5">★</button></div></div>
+  <div class="card">
+   <form name="salasar-rating" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="ratingForm">
+    <input type="hidden" name="form-name" value="salasar-rating"><input type="hidden" name="subject" value="NEW SALASAR GAME RATING"><input type="hidden" name="rating" id="ratingValue" value="5">
+    <input class="field" name="playerName" placeholder="Your name" required>
+    <input class="field" name="email" type="email" placeholder="Email (optional)">
+    <textarea class="field" name="feedback" placeholder="What did you love? What should we improve?" required></textarea>
+    <input class="field" name="improvement" placeholder="One feature you want next">
+    <input type="hidden" name="rank" id="ratingRank"><input type="hidden" name="xp" id="ratingXP">
+    <button class="btn primary" type="submit">SEND RATING →</button>
+    <div class="result" id="ratingResult"></div>
+   </form>
+  </div>
+ </div>
+</section>
+</main>
+
+<div class="location-footer" id="location">
+ <div class="location-inner">
+  <div>
+   <div class="location-title">📍 SALASAR BALAJI — SALASAR, RAJASTHAN</div>
+   <div class="location-address">Salasar, Churu District, Rajasthan, India<br><span class="muted">SALASAR is a fictional game universe inspired by the cultural setting and visual atmosphere of Rajasthan. It is not an official temple game.</span></div>
+  </div>
+  <div class="location-actions">
+   <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Salasar+Balaji+Temple%2C+Salasar%2C+Churu%2C+Rajasthan" target="_blank" rel="noopener">OPEN LOCATION ↗</a>
+   <a class="btn" href="https://www.tourism.rajasthan.gov.in/salasar-balaji-temple.html" target="_blank" rel="noopener">RAJASTHAN TOURISM ↗</a>
+  </div>
+ </div>
+</div>
+<footer>SALASAR • INDIAN FUTURE-FANTASY GAME UNIVERSE • BUILT FOR MOBILE + DESKTOP • SOLO + MULTIPLAYER READY</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const SKEY="salasar_v2";
+let state=JSON.parse(localStorage.getItem(SKEY)||'null')||{xp:0,lives:3,energy:100,streak:0,level:1,games:0,wins:0,best:0,rank:"PATHIK"};
+function save(){localStorage.setItem(SKEY,JSON.stringify(state));render();}
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),2200)}
+function scrollToId(id){document.getElementById(id)?.scrollIntoView({behavior:"smooth",block:"start"})}
+function render(){
+ document.getElementById("xp").textContent=state.xp; document.getElementById("lives").textContent="❤".repeat(state.lives)+"♡".repeat(3-state.lives);
+ document.getElementById("energy").textContent=state.energy; document.getElementById("streak").textContent=state.streak;
+ document.getElementById("level").textContent=state.level; document.getElementById("games").textContent=state.games; document.getElementById("wins").textContent=state.wins;
+ document.getElementById("heroRank").textContent=state.rank; document.getElementById("profileRank").textContent=state.rank;
+ document.getElementById("levelBar").style.width=(state.xp%500)/5+"%"; document.getElementById("raceBest").textContent=state.best;
+ document.getElementById("ratingRank").value=state.rank;document.getElementById("ratingXP").value=state.xp;
+}
+function award(xp){state.xp+=xp;state.wins++;state.games++;state.streak++;state.energy=Math.max(0,state.energy-10);const old=state.level;state.level=Math.floor(state.xp/500)+1;if(state.level>old){toast("LEVEL UP! You reached Level "+state.level)};updateRank();save();toast("+"+xp+" XP • STREAK "+state.streak)}
+function lose(){state.games++;state.streak=0;state.lives=Math.max(0,state.lives-1);state.energy=Math.max(0,state.energy-15);save();toast(state.lives?"Life lost.":"No lives left — recover and return.")}
+function updateRank(){const x=state.xp; if(x>=10000)state.rank="AYUTAKSH";else if(x>=8000)state.rank="ANJANAY";else if(x>=6500)state.rank="VRISHANK";else if(x>=5000)state.rank="SAMBHAVI";else if(x>=4000)state.rank="ANAGH";else if(x>=3000)state.rank="VAJRA VEER";else if(x>=2500)state.rank="MAHAVEER";else if(x>=2000)state.rank="RANVEER";else if(x>=1600)state.rank="VEER";else if(x>=1200)state.rank="YODHA";else if(x>=900)state.rank="AGNIVEER";else if(x>=700)state.rank="PRACHAND";else if(x>=500)state.rank="AGNEY";else if(x>=350)state.rank="TEJAS";else if(x>=250)state.rank="JVALA";else if(x>=180)state.rank="MAHARISHI";else if(x>=130)state.rank="RISHI";else if(x>=90)state.rank="SIDDHA";else if(x>=50)state.rank="MANTRA";else state.rank="PATHIK";}
+const quizzes=[
+["Which planet is known as the Red Planet?",["Mars","Venus","Jupiter","Mercury"],0],
+["Which Indian classical instrument has strings and a long neck?",["Tabla","Sitar","Bansuri","Mridangam"],1],
+["What is 12 × 8?",["86","96","108","88"],1],
+["Which element has the symbol Au?",["Silver","Iron","Gold","Oxygen"],2],
+["Which shape has three sides?",["Square","Triangle","Circle","Hexagon"],1]
+];
+let qi=Math.floor(Math.random()*quizzes.length),timer;
+function loadQuiz(){const q=quizzes[qi];document.getElementById("quizQuestion").textContent=q[0];const a=document.getElementById("answers");a.innerHTML="";q[1].forEach((x,i)=>{const b=document.createElement("button");b.className="btn";b.textContent=x;b.onclick=()=>answerQuiz(i);a.appendChild(b)});document.getElementById("quizResult").textContent="";let t=100;clearInterval(timer);timer=setInterval(()=>{t-=2;document.getElementById("quizBar").style.width=t+"%";if(t<=0){clearInterval(timer);lose();document.getElementById("quizResult").textContent="TIME OUT";}},100)}
+function answerQuiz(i){clearInterval(timer);if(i===quizzes[qi][2]){document.getElementById("quizResult").textContent="CORRECT — +50 XP";award(50)}else{document.getElementById("quizResult").textContent="WRONG";lose()}}
+document.getElementById("nextQuiz").onclick=()=>{qi=(qi+1)%quizzes.length;loadQuiz()};
+const patterns=[["2 • 4 • 8 • 16 • ?",["24","32","36","40"],1],["3 • 6 • 12 • 24 • ?",["36","42","48","54"],2],["5 • 10 • 15 • 20 • ?",["22","25","30","35"],1]];
+let pi=0;
+function loadPattern(){const p=patterns[pi];document.getElementById("patternQ").textContent=p[0];const a=document.getElementById("patternA");a.innerHTML="";p[1].forEach((x,i)=>{const b=document.createElement("button");b.className="btn";b.textContent=x;b.onclick=()=>{if(i===p[2]){document.getElementById("patternResult").textContent="CORE SOLVED — +100 XP";award(100)}else{document.getElementById("patternResult").textContent="CORE FAILED";lose()}};a.appendChild(b)})}
+loadPattern();loadQuiz();
+
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>scrollToId(b.dataset.go)));
+document.querySelectorAll(".location").forEach(b=>b.addEventListener("click",()=>{const p=b.dataset.place;toast("Entered "+p.toUpperCase());if(p==="arena")scrollToId("play");if(p==="stage")scrollToId("events");if(p==="vault")checkVault()}));
+function checkVault(){if(state.xp>=1000)toast("VAULT UNLOCKED — Ancient signal recovered!");else toast("Vault sealed. Reach 1,000 XP.")}
+document.getElementById("enterBtn").onclick=()=>{document.getElementById("intro").classList.add("exit");setTimeout(()=>scrollToId("home"),300)};
+document.getElementById("soundBtn").onclick=()=>toast("Cinematic sound toggle ready — add your audio files in /assets/audio/");
+document.getElementById("starsRate").addEventListener("click",e=>{if(e.target.dataset.star){const n=+e.target.dataset.star;document.getElementById("ratingValue").value=n;document.querySelectorAll("#starsRate button").forEach(b=>b.classList.toggle("active",+b.dataset.star<=n))}});
+document.getElementById("ratingForm").addEventListener("submit",e=>{document.getElementById("ratingResult").textContent="Your rating is being sent…";setTimeout(()=>document.getElementById("ratingResult").textContent="Thanks for helping build SALASAR.",200)});
+const boardNames=[["ANAGH","AYUTAKSH",10000],["SAMBHAVI","ANJANAY",8400],["VRISHANK","VRISHANK",6500],["RACER_07","VAJRA VEER",3100],["YOU",state.rank,state.xp]];
+document.getElementById("board").innerHTML=boardNames.sort((a,b)=>b[2]-a[2]).map((r,i)=>`<tr><td>${i+1}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("");
+
+/* VAJRA RUSH racing game */
+const c=document.getElementById("raceCanvas"),ctx=c.getContext("2d");let race={on:false,x:450,y:350,score:0,t:0,speed:4,obs:[],keys:{}};let last=0;
+function resetRace(){race={on:true,x:450,y:350,score:0,t:0,speed:4,obs:[],keys:{}};document.getElementById("raceResult").textContent="RACE LIVE — survive!";requestAnimationFrame(loop)}
+function spawn(){race.obs.push({x:100+Math.random()*700,y:-30,w:30+Math.random()*30,h:45+Math.random()*30})}
+function drawRoad(){ctx.clearRect(0,0,c.width,c.height);ctx.fillStyle="#060914";ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle="#111a2d";ctx.fillRect(130,0,640,c.height);ctx.strokeStyle="rgba(255,255,255,.08)";ctx.lineWidth=3;for(let y=(race.t*8)%70-70;y<c.height;y+=70){ctx.beginPath();ctx.moveTo(445,y);ctx.lineTo(455,y);ctx.stroke();ctx.beginPath();ctx.moveTo(320,y);ctx.lineTo(325,y);ctx.stroke();ctx.beginPath();ctx.moveTo(575,y);ctx.lineTo(580,y);ctx.stroke()}ctx.fillStyle="#ffd36a";ctx.fillRect(race.x-17,race.y,34,55);ctx.fillStyle="#53dfff";ctx.fillRect(race.x-10,race.y+8,20,12);race.obs.forEach(o=>{ctx.fillStyle="#ff657a";ctx.fillRect(o.x,o.y,o.w,o.h);ctx.fillStyle="#ffd36a";ctx.fillRect(o.x+6,o.y+7,6,6);ctx.fillRect(o.x+o.w-12,o.y+7,6,6)})}
+function hit(a,b){return a.x-15<b.x+b.w&&a.x+15>b.x&&a.y<b.y+b.h&&a.y+50>b.y}
+function loop(ts){if(!race.on)return;const dt=Math.min(.035,(ts-last)/1000||.016);last=ts;race.t+=dt;race.speed=4+Math.min(7,race.t/10);if(Math.random()<.025+race.t*.00025)spawn();if(race.keys.left)race.x-=280*dt;if(race.keys.right)race.x+=280*dt;race.x=Math.max(155,Math.min(745,race.x));race.obs.forEach(o=>o.y+=race.speed*70*dt);race.obs=race.obs.filter(o=>o.y<470);for(const o of race.obs){if(hit({x:race.x,y:race.y},o)){race.on=false;document.getElementById("raceResult").textContent="CRASH! Race over. Restart and beat your best.";lose();drawRoad();return}}race.score=Math.floor(race.t*60+race.t*8);document.getElementById("raceScore").textContent=race.score;if(conn&&conn.open&&Math.floor(race.t*10)%4===0)conn.send({type:"race",score:race.score,x:race.x,y:race.y});document.getElementById("raceSpeed").textContent=(race.speed/4).toFixed(1)+"x";drawRoad();if(race.t>=60){race.on=false;state.best=Math.max(state.best,race.score);state.xp+=200;state.games++;state.wins++;state.streak++;updateRank();save();document.getElementById("raceResult").textContent="FINISH! +200 XP • VAJRA RUSH COMPLETE";if(conn&&conn.open)conn.send({type:"finish",score:race.score});return}requestAnimationFrame(loop)}
+document.getElementById("raceStart").onclick=resetRace;window.addEventListener("keydown",e=>{if(e.key==="ArrowLeft"||e.key.toLowerCase()==="a")race.keys.left=true;if(e.key==="ArrowRight"||e.key.toLowerCase()==="d")race.keys.right=true});window.addEventListener("keyup",e=>{if(e.key==="ArrowLeft"||e.key.toLowerCase()==="a")race.keys.left=false;if(e.key==="ArrowRight"||e.key.toLowerCase()==="d")race.keys.right=false});c.addEventListener("pointermove",e=>{if(race.on){const r=c.getBoundingClientRect();race.x=(e.clientX-r.left)/r.width*c.width}});
+render();drawRoad();
+
+/* Multiplayer: PeerJS WebRTC room layer */
+let peer=null, conn=null, isHost=false;
+function mpStatus(text,live=false){document.getElementById("mpStatus").textContent=text;document.getElementById("mpDot").classList.toggle("live",live)}
+function wireConn(c){
+  conn=c;
+  c.on("open",()=>{mpStatus("CONNECTED",true);document.getElementById("mpResult").textContent="Connected! Multiplayer data channel is live."; if(isHost) c.send({type:"hello",player:state.rank,xp:state.xp});});
+  c.on("data",d=>{
+    if(d.type==="hello") document.getElementById("mpResult").textContent="Rival joined: "+d.player+" • "+d.xp+" XP";
+    if(d.type==="race") document.getElementById("mpResult").textContent="Rival racing • score "+d.score;
+    if(d.type==="finish") document.getElementById("mpResult").textContent="Rival finished with "+d.score+" points.";
+  });
+  c.on("close",()=>{mpStatus("DISCONNECTED");document.getElementById("mpResult").textContent="Connection closed."});
+  c.on("error",()=>{mpStatus("ERROR");document.getElementById("mpResult").textContent="Could not keep the room connection open."});
+}
+document.getElementById("createRoom").onclick=()=>{
+  if(typeof Peer==="undefined"){toast("Multiplayer library unavailable");return}
+  if(peer) peer.destroy();
+  peer=new Peer();
+  isHost=true;mpStatus("CREATING…");
+  peer.on("open",id=>{document.getElementById("myRoomCode").textContent=id;mpStatus("WAITING",true);document.getElementById("mpResult").textContent="Room ready. Share the code.";});
+  peer.on("connection",c=>wireConn(c));
+  peer.on("error",e=>{mpStatus("ERROR");toast("Room error: "+e.type)});
+};
+document.getElementById("joinRoom").onclick=()=>{
+  if(typeof Peer==="undefined"){toast("Multiplayer library unavailable");return}
+  const id=document.getElementById("joinCode").value.trim();if(!id)return toast("Enter a room code");
+  if(peer) peer.destroy();peer=new Peer();isHost=false;mpStatus("CONNECTING…");
+  peer.on("open",()=>wireConn(peer.connect(id)));
+  peer.on("error",e=>{mpStatus("ERROR");toast("Join error: "+e.type)});
+};
+document.getElementById("copyRoom").onclick=async()=>{
+  const code=document.getElementById("myRoomCode").textContent;if(code==="—")return toast("Create a room first");
+  try{await navigator.clipboard.writeText(code);toast("Room code copied")}catch{toast("Copy failed — select the code")}
+};
+
+/* Mobile race controls */
+function hold(el,key){const down=e=>{e.preventDefault();race.keys[key]=true},up=e=>{e.preventDefault();race.keys[key]=false};["pointerdown","touchstart"].forEach(x=>el.addEventListener(x,down,{passive:false}));["pointerup","pointercancel","pointerleave","touchend"].forEach(x=>el.addEventListener(x,up,{passive:false}))}
+hold(document.getElementById("leftBtn"),"left");hold(document.getElementById("rightBtn"),"right");
+document.getElementById("brakeBtn").addEventListener("pointerdown",e=>{e.preventDefault();race.speed=Math.max(2,race.speed-2)});
+</script>
+</body>
+</html>
